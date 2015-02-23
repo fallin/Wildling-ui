@@ -28,14 +28,19 @@ block content
                 
     .row
         .col-md-12
-            pre#editor(style='min-height: 200px')
+            pre#editor(style='min-height: 300px')
 
-    .row
+    .row(data-bind='visible: wildlingValueObjArray().length > 1')
         .col-md-12
-            h3(data-bind='visible: wildlingValueObjArray().length > 0') Concurrent values for 
-                span.label.label-default(data-bind='text: wildlingKey')
+            h3 Concurrent values for&nbsp;
+                span(data-bind='text: wildlingKey')
             // ko foreach: wildlingValueStrArray
             pre
+                button.btn.btn-default.pull-right(
+                    type="button", 
+                    data-bind='click: function() {$parent.selectValue($index());}, css: {active: $parent.selectedIndex() === $index()}'
+                    )
+                    span.glyphicon.glyphicon-ok
                 code(data-bind='text: $data')       
             // /ko    
     

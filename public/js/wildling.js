@@ -6,6 +6,7 @@ var ViewModel = function(editor) {
     self.editor = editor;
     self.versionVector = ko.observable();
     self.wildlingKey = ko.observable('foo');
+    self.selectedIndex = ko.observable();
     
     self.wildlingValueObjArray = ko.observableArray();
     self.wildlingValueStrArray = ko.pureComputed({
@@ -37,19 +38,22 @@ var ViewModel = function(editor) {
                 self.versionVector(vv);
                 
                 var item = data[data.length-1];
+                self.selectedIndex(data.length-1);
                 self.editor.setValue(ko.toJSON(item, null, '    '));
             }
             else {
                 self.VersionVector("");
-                self.wildlingValueObjArray(null);
+                self.wildlingValueObjArray([]);
                 self.editor.setValue(null);
+                self.selectedIndex(-1);
             }
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log( "error" );
             self.versionVector("");
-            self.wildlingValueObjArray(null);
+            self.wildlingValueObjArray([]);
             self.editor.setValue(null);
+            self.selectedIndex(-1);
         })
         .always(function() {
             console.log( "complete" );
@@ -76,6 +80,12 @@ var ViewModel = function(editor) {
         .always(function() {
             console.log( "complete" );
         });
+    };
+    
+    self.selectValue = function(index) {
+        self.selectedIndex(index);
+        var item = self.wildlingValueObjArray()[index];
+        self.editor.setValue(ko.toJSON(item, null, '    '));
     };
 };
 
