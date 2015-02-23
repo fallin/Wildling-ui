@@ -1,0 +1,22 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Developer: Brant Fallin
+    Twitter: @brantfallin
+    Location: Fort Collins, CO USA
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr, Bootstrap3
+    Initializr
+    NodeJS, Hapi, Jade
+
+# SITE
+
+    Last update: 2014/12/01
+    Language: English
+    Doctype: HTML5
+    IDE: brackets.io

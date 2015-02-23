@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    .row
+        .col-md-8
+            form.form-horizontal(data-bind='submit: wildlingPut')
+                .form-group
+                    label.col-sm-4.control-label(for='wildling-key') Key
+                    .col-sm-8
+                        //input.form-control#wildling-key(type='text',data-bind='textInput: wildlingKey')
+                        .input-group
+                            input.form-control(type='text',data-bind='textInput: wildlingKey')
+                            span.input-group-btn
+                                button.btn.btn-default(data-bind='click: wildlingGet') Get
+                .form-group
+                    label.col-sm-4.control-label(for='wildling-vv') VersionVector
+                    .col-sm-8
+                        //input.form-control#wildling-vv(type='text',data-bind='value: versionVector',readonly)
+                        .input-group
+                            input.form-control(type='text',data-bind='value: versionVector',readonly)
+                            span.input-group-btn
+                                button.btn.btn-default(data-bind='click: function() { versionVector(""); }')
+                                    span.glyphicon.glyphicon-remove
+                .form-group
+                    .col-sm-offset-4.col-sm-8
+                        button.btn.btn-primary(data-bind='click: wildlingPut') Put
+        .col-md-4
+                
+    .row
+        .col-md-12
+            pre#editor(style='min-height: 200px')
+
+    .row
+        .col-md-12
+            h3(data-bind='visible: wildlingValueObjArray().length > 0') Concurrent values for 
+                span.label.label-default(data-bind='text: wildlingKey')
+            // ko foreach: wildlingValueStrArray
+            pre
+                code(data-bind='text: $data')       
+            // /ko    
+    
+block scripts
+    script(src='js/src-min-noconflict/ace.js')
+    script(src='js/wildling.js')
